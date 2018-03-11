@@ -1,5 +1,8 @@
 #include <unistd.h>
+#include <errno.h>
 #include <stdarg.h>
+
+extern int __execsh(const char *, char *const []);
 
 int execlp(const char *file, const char *argv0, ...)
 {
@@ -17,6 +20,11 @@ int execlp(const char *file, const char *argv0, ...)
 			argv[i] = va_arg(ap, char *);
 		argv[i] = NULL;
 		va_end(ap);
-		return execvp(file, argv);
+		execvp(file, argv);
+		if (errno == ENOEXEC) {
+			errno = 0;
+			return __execsh(file, argv);
+		}
+		return -1;
 	}
 }

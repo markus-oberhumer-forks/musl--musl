@@ -5,6 +5,7 @@
 #include <limits.h>
 
 extern char **__environ;
+extern int __execsh(const char *, char *const []);
 
 int __execvpe(const char *file, char *const argv[], char *const envp[])
 {
@@ -54,7 +55,12 @@ int __execvpe(const char *file, char *const argv[], char *const envp[])
 
 int execvp(const char *file, char *const argv[])
 {
-	return __execvpe(file, argv, __environ);
+	__execvpe(file, argv, __environ);
+	if (errno == ENOEXEC) {
+		errno = 0;
+		return __execsh(file, argv);
+	}
+	return -1;
 }
 
 weak_alias(__execvpe, execvpe);
