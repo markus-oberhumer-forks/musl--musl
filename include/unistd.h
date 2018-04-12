@@ -427,6 +427,7 @@ pid_t gettid(void);
 #define _SC_THREAD_ROBUST_PRIO_PROTECT	248
 #define _SC_MINSIGSTKSZ	249
 #define _SC_SIGSTKSZ	250
+#define _SC_XOPEN_UUCP	251
 
 #define _CS_PATH	0
 #define _CS_POSIX_V6_WIDTH_RESTRICTED_ENVS	1
