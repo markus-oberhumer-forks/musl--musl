@@ -4,7 +4,7 @@
 
 long fpathconf(int fd, int name)
 {
-	static const short values[] = {
+	static const long values[] = {
 		[_PC_LINK_MAX] = _POSIX_LINK_MAX,
 		[_PC_MAX_CANON] = _POSIX_MAX_CANON,
 		[_PC_MAX_INPUT] = _POSIX_MAX_INPUT,
@@ -25,7 +25,8 @@ long fpathconf(int fd, int name)
 		[_PC_REC_XFER_ALIGN] = 4096,
 		[_PC_ALLOC_SIZE_MIN] = 4096,
 		[_PC_SYMLINK_MAX] = -1,
-		[_PC_2_SYMLINKS] = 1
+		[_PC_2_SYMLINKS] = 1,
+		[_PC_TIMESTAMP_RESOLUTION] = 100000000,
 	};
 	if (name >= sizeof(values)/sizeof(values[0])) {
 		errno = EINVAL;

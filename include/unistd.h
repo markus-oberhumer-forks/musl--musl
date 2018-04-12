@@ -282,6 +282,7 @@ pid_t gettid(void);
 #define _PC_ALLOC_SIZE_MIN	18
 #define _PC_SYMLINK_MAX	19
 #define _PC_2_SYMLINKS	20
+#define _PC_TIMESTAMP_RESOLUTION 21
 
 #define _SC_ARG_MAX	0
 #define _SC_CHILD_MAX	1
