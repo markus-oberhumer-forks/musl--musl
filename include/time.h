@@ -60,11 +60,14 @@ struct tm *gmtime (const time_t *);
 struct tm *localtime (const time_t *);
 char *asctime (const struct tm *);
 char *ctime (const time_t *);
+
+#if __STDC_VERSION__ >= 201112L || defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
 int timespec_get(struct timespec *, int);
 
-#define CLOCKS_PER_SEC 1000000L
-
 #define TIME_UTC 1
+#endif
+
+#define CLOCKS_PER_SEC 1000000L
 
 #if defined(_POSIX_SOURCE) || defined(_POSIX_C_SOURCE) \
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
@@ -139,7 +142,10 @@ __REDIR(mktime, __mktime64);
 __REDIR(gmtime, __gmtime64);
 __REDIR(localtime, __localtime64);
 __REDIR(ctime, __ctime64);
+# if __STDC_VERSION__ >= 201112L || defined(_BSD_SOURCE) \
+  || defined(_GNU_SOURCE)
 __REDIR(timespec_get, __timespec_get_time64);
+# endif
 #if defined(_POSIX_SOURCE) || defined(_POSIX_C_SOURCE) \
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
  || defined(_BSD_SOURCE)

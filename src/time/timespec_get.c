@@ -1,3 +1,4 @@
+#define _BSD_SOURCE
 #include <time.h>
 
 /* There is no other implemented value than TIME_UTC; all other values
