@@ -102,7 +102,6 @@ int posix_memalign (void **, size_t, size_t);
 int setenv (const char *, const char *, int);
 int unsetenv (const char *);
 int mkstemp (char *);
-int mkostemp (char *, int);
 char *mkdtemp (char *);
 int getsubopt (char **, char *const *, char **);
 int rand_r (unsigned *);
@@ -140,6 +139,7 @@ void lcong48 (unsigned short [7]);
 #include <alloca.h>
 char *mktemp (char *);
 int mkstemps (char *, int);
+int mkostemp (char *, int);
 int mkostemps (char *, int, int);
 void *valloc (size_t);
 void *memalign(size_t, size_t);
