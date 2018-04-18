@@ -41,14 +41,18 @@ void *malloc (size_t);
 void *calloc (size_t, size_t);
 void *realloc (void *, size_t);
 void free (void *);
+#if __STDC_VERSION__ >= 201112L || __cplusplus >= 201103L || defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
 void *aligned_alloc(size_t, size_t);
+#endif
 
 _Noreturn void abort (void);
 int atexit (void (*) (void));
 _Noreturn void exit (int);
 _Noreturn void _Exit (int);
+#if __STDC_VERSION__ >= 201112L || __cplusplus >= 201103L || defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
 int at_quick_exit (void (*) (void));
 _Noreturn void quick_exit (int);
+#endif
 
 char *getenv (const char *);
 
