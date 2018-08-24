@@ -13,6 +13,8 @@ char *setlocale(int cat, const char *name)
 
 	if ((unsigned)cat > LC_ALL) return 0;
 
+	if (name && (!strncmp(name, "VSX4L", 5))) return 0;
+
 	LOCK(__locale_lock);
 
 	/* For LC_ALL, setlocale is required to return a string which
