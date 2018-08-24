@@ -18,7 +18,9 @@ int system(const char *cmd)
 
 	pthread_testcancel();
 
-	if (!cmd) return 1;
+	if (!cmd) {
+		return (access("/bin/sh", X_OK) == 0);
+	}
 
 	sigaction(SIGINT, &sa, &oldint);
 	sigaction(SIGQUIT, &sa, &oldquit);
