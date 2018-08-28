@@ -3,7 +3,7 @@
 
 int pthread_attr_setinheritsched(pthread_attr_t *a, int inherit)
 {
-	if (inherit > 1U) return EINVAL;
+	if (inherit > 1U) return ENOTSUP;
 	a->_a_sched = inherit;
 	return 0;
 }
