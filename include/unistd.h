@@ -37,15 +37,22 @@ extern "C" {
 #include <bits/alltypes.h>
 
 int pipe(int [2]);
-int pipe2(int [2], int);
 int close(int);
-int posix_close(int, int);
 int dup(int);
 int dup2(int, int);
-int dup3(int, int, int);
 off_t lseek(int, off_t, int);
 int fsync(int);
 int fdatasync(int);
+
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE) \
+ || (defined(_XOPEN_SOURCE) && _XOPEN_SOURCE+0 > 700) \
+ || (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE+0 > 200809L)
+int pipe2(int [2], int);
+int dup3(int, int, int);
+int posix_close(int, int);
+
+#define POSIX_CLOSE_RESTART     0
+#endif
 
 ssize_t read(int, void *, size_t);
 ssize_t write(int, const void *, size_t);
@@ -207,8 +214,6 @@ pid_t gettid(void);
 #define lockf64 lockf
 #define off64_t off_t
 #endif
-
-#define POSIX_CLOSE_RESTART     0
 
 #define _XOPEN_VERSION          700
 #define _XOPEN_UNIX             1
