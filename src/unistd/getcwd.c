@@ -15,8 +15,11 @@ char *getcwd(char *buf, size_t size)
 		return 0;
 	}
 	long ret = syscall(SYS_getcwd, buf, size);
-	if (ret < 0)
+	if (ret < 0) {
+		if (errno == ENAMETOOLONG)
+			errno = ENOMEM;
 		return 0;
+	}
 	if (ret == 0 || buf[0] != '/') {
 		errno = ENOENT;
 		return 0;
