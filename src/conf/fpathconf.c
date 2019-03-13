@@ -5,7 +5,7 @@
 long fpathconf(int fd, int name)
 {
 	static const long values[] = {
-		[_PC_LINK_MAX] = _POSIX_LINK_MAX,
+		[_PC_LINK_MAX] = -1,
 		[_PC_MAX_CANON] = _POSIX_MAX_CANON,
 		[_PC_MAX_INPUT] = _POSIX_MAX_INPUT,
 		[_PC_NAME_MAX] = NAME_MAX,
