@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #include <pty.h>
 #include <utmp.h>
 #include <unistd.h>
