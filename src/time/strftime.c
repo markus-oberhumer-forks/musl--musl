@@ -95,6 +95,8 @@ const char *__strftime_fmt_1(char (*s)[100], size_t *l, int f, const struct tm *
 	case 'H':
 		val = tm->tm_hour;
 		goto number;
+	case 'l':
+		def_pad = ' ';
 	case 'I':
 		val = tm->tm_hour;
 		if (!val) val = 12;
