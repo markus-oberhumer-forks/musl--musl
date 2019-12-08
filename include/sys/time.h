@@ -13,6 +13,7 @@ int gettimeofday (struct timeval *__restrict, void *__restrict);
 #define ITIMER_REAL    0
 #define ITIMER_VIRTUAL 1
 #define ITIMER_PROF    2
+#define __USE_TIME_BITS64 1
 
 struct itimerval {
 	struct timeval it_interval;
