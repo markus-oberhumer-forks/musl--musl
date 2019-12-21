@@ -48,8 +48,8 @@ int renameat(int oldfd, const char *old, int newfd, const char *new)
 
 	/* Test equality of old and new.
 	   If they both resolve to the same dentry, we do nothing. */
-	if (fstatat(oldfd, old, &oldstat, 0) == 0 && \
-	    fstatat(newfd, new, &newstat, 0) == 0 && \
+	if (fstatat(oldfd, old, &oldstat, AT_SYMLINK_NOFOLLOW) == 0 && \
+	    fstatat(newfd, new, &newstat, AT_SYMLINK_NOFOLLOW) == 0 && \
 	    oldstat.st_dev == newstat.st_dev && \
 	    oldstat.st_ino == newstat.st_ino) return 0;
 
