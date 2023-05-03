@@ -51,3 +51,5 @@ fail:
 	fclose(f);
 	return NULL;
 }
+
+weak_alias(freopen, freopen64);

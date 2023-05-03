@@ -140,3 +140,5 @@ int nftw(const char *path, int (*fn)(const char *, const struct stat *, int, str
 	pthread_setcancelstate(cs, 0);
 	return r;
 }
+
+weak_alias(nftw, nftw64);
